@@ -4,6 +4,7 @@ This is a casual project aimed at creating a visual encryption algorithm using P
 ### Overview -
 The visual encryption algorithm generates a visual representation of encrypted data using a configuration file. The decryption process works on the encrypted image file and the corresponding configuration file. **For a successful transfer, both parties must have the same configuration file.**
 A few example config files can be found in the config folder. *Not every config file might work well.*
+The image 'output/test.png' has been generated using the 'Test option' in the program with the configuration file 'config/configFirst.json'. 
 
 ### Features -
 - Encryption: Generates visually encrypted representations of data.

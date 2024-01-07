@@ -1,6 +1,7 @@
 # use binary representations of alphabets a -> 1 -> 00001, z -> 26 -> 011010
 from pattern import Pattern
 from utils import filter, convert, render, readConfigFile
+from testdata import testdata
 
 
 def encrypt(plainText: str, configFilePath: str) -> Pattern:
@@ -19,9 +20,22 @@ def decrypt(imagePath: str, configFilePath: str) -> str:
                                   config["ANGLEINCREMENT"], config["ANGLEDECREMENT"], config["LAYERGAP"], imagePath)).strip()
 
 
+def test():
+    configFilePath = input("Enter your config file path: ")
+    pattern = encrypt(plainText=testdata,
+                      configFilePath=configFilePath)
+    pattern.save("test")
+    decodedText = decrypt(imagePath="./output/test.png",
+                          configFilePath=configFilePath)
+    if (testdata == decodedText.strip()):
+        return True
+    else:
+        return False
+
+
 def main() -> None:
     while True:
-        print("Encrypt (e) | Decrypt (d)")
+        print("Encrypt (e) | Decrypt (d) | Test (t) | Quit (q)")
         inp = input("Enter your choice : ").lower().strip()
         if (inp == "q"):
             return
@@ -35,6 +49,12 @@ def main() -> None:
             imagePath = input("Enter the file path: ")
             configFilePath = input("Enter your config file path: ")
             print(decrypt(imagePath=imagePath, configFilePath=configFilePath))
+        elif (inp == "t"):
+            res = test()
+            if (res):
+                print("Works Fine")
+            else:
+                print("There is some error")
         else:
             print("Invalid choice, try again")
 
